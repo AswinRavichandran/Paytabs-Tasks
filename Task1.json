@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "6d477709-efbb-47ca-ae3e-288994c9b142",
+		"name": "Employee details",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23158218"
+	},
+	"item": [
+		{
+			"name": "Get list of available employee details.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"console.log(\"Get the employee details\")\r",
+							"\r",
+							"let Jsondata= pm.response.json();\r",
+							"\r",
+							"console.log(Jsondata);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a one employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Assert name is Aswin\", ()=>{\r",
+							"    var jasonresponse=pm.response.json()\r",
+							"    pm.expect(jasonresponse.name).to.eql(\"Aswin\")\r",
+							"    \r",
+							"})\r",
+							"\r",
+							"console.log(\"create a employee\")\r",
+							"let Jsondata= pm.response.json();\r",
+							"\r",
+							"console.log(Jsondata);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Aswin\",\r\n    \"job\": \"Tester\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update job of employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert job is developer\", ()=>{\r",
+							"    var jasonresponse=pm.response.json()\r",
+							"    pm.expect(jasonresponse.job).to.eql(\"developer\")\r",
+							"})\r",
+							" \r",
+							"console.log(\"Update the job of employee detail\")\r",
+							"\r",
+							"let Jsondata= pm.response.json();\r",
+							"\r",
+							"console.log(Jsondata);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Aswin\",\r\n    \"job\": \"developer\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/724",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"724"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
